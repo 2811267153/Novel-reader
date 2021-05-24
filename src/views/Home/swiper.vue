@@ -3,49 +3,59 @@
     <van-swipe class="my-swipe" indicator-color="white">
       <van-swipe-item v-for="ele in bookList" :key="ele.id">
         <div class="flex">
-          <img :src="'http://yuenov.com' + ele.coverImg" alt="" />
+          <img :src="'http://statics.zhuishushenqi.com' + ele.cover" alt="" />
           <div class="book-list">
             <p class="title">{{ ele.title }}</p>
             <p class="author">{{ ele.author }}</p>
             <!-- {{ ele.desc }} -->
             <div class="tags">{{ ele.categoryName }}</div>
-            <p class="word">{{ ele.word }}</p>
+            <p class="word">{{ ele.latelyFollower }}</p>
             <van-button round type="info">开始阅读</van-button>
           </div>
         </div>
-        <div class="aaa">{{ ele.desc }}</div>
+        <div class="aaa">{{ ele.shortIntro }}</div>
       </van-swipe-item>
     </van-swipe>
   </van-skeleton>
 </template>
 <script>
-import { getHotBook } from "../../netWork/home";
-import axios from "axios";
+// import { getCategories, getCategoriesY } from "../../netWork/axios";
+import * as api from '../../netWork/axios'
 export default {
   name: "swiper",
   data() {
     return {
       bookList: [],
       loading: true,
-      loop: false,
     };
   },
   created() {
-    axios.get("/dev-api/app/open/api/category/discovery").then((res) => {
-      console.log(res);
-      this.bookList = res.data.data.list[1].bookList;
-      console.log(this.bookList);
-    });
+    this.getCategories();
+    this.getCategoriesY();
   },
   mounted() {
     this.loading = false;
     this.loop = false;
   },
   methods: {
-    getHotBook() {
-      getHotBook().then((res) => {
-        console.log(res);
+    getCategories() {
+      api.getCategories().then((res) => {
+        this.bookList = res.data.ranking.books.slice(0, 9);
       });
+    },
+    getCategoriesY() {
+      // api.getCategoriesY(this.sex, this.type, this.major, this.minor, this.start, this.limit).then((res) => {
+      //   console.log(res);
+      // });
+      // api.getCategoriesY('male', 'hot', '玄幻','东方玄幻', this.start, this.limit).then(res => {
+      //   console.log(res);
+      // })
+      // api.getCategoriesY('male', 'hot', '','东方玄幻', this.start, this.limit).then(res => {
+      //   console.log(res);
+      // })
+      // api.getCategoriesY('male', 'hot', '玄幻','东方玄幻', this.start, this.limit).then(res => {
+      //   console.log(res);
+      // })
     },
   },
 };
@@ -53,7 +63,7 @@ export default {
 
 <style scoped>
 .van-swipe {
-  height: 50vh;
+  height: 39vh;
   background-color: rgb(244, 246, 250);
 }
 .van-skeleton__title {

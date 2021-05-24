@@ -1,21 +1,19 @@
 <template>
   <div id="home">
-      <swiper></swiper>
-      <tags></tags>
-      <scroll class="scroll" ref="scroll">
-          <div class="content">
-            <boo-tags></boo-tags>
-          </div>
-      </scroll>
+    <swiper></swiper>
+    <scroll class="scroll">
+      <div class="content">
+        <tags/>
+      </div>
+    </scroll>
   </div>
 </template>
 
 <script>
-import swiper from './swiper'
-import tags from './tags'
-import Tags from './tags.vue';
-
-import scroll from '../../scrool/scrool'
+import swiper from "./swiper";
+import tags from "./tags";
+import Tags from "./tags.vue";
+import scroll from "../../scrool/scrool";
 export default {
   name: "home",
   data() {
@@ -27,13 +25,14 @@ export default {
     this.loading = false;
   },
   components: {
-      swiper,
-      tags,
-      scroll
-  }
+    swiper,
+    tags,
+    scroll
+  },
 };
 
-            Tags</script>
+Tags;
+</script>
 
 <style scoped>
 #home {
@@ -42,8 +41,11 @@ export default {
 .van-skeleton__avatar {
   height: 200px;
 }
-.scroll{
-    height: 92vh;
-    overflow: hidden;
+.scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+.content{
+  padding-bottom: 60px;
 }
 </style>
