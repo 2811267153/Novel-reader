@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import * as api from "../../netWork/axios";
 export default {
   name: "bookTags",
   data() {
@@ -35,14 +34,14 @@ export default {
       type: "hot",
       major: "",
       minor: "",
-      start: "",
+      start: 1,
       limit: 20,
+      isShow: "",
     };
   },
   props: {
     booktags: {},
     sex: {},
-    bookItem: []  //保存书籍
   },
   methods: {
     itemClick(index) {
@@ -59,20 +58,8 @@ export default {
           limit: this.limit,
         },
       });
-      api
-        .getCategoriesY(
-          this.sex,
-          this.type,
-          this.major,
-          this.minor,
-          this.start,
-          this.limit
-        )
-        .then((res) => {
-          console.log(res);
-          this.bookItem = res.data.books
-          console.log(this.bookItem);
-        });
+      this.isShow = false;
+      this.$store.commit("isShow", this.isShow);
     },
   },
 };

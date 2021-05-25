@@ -41,7 +41,6 @@ export default {
   methods: {
     itemClick() {
       this.isActive = !this.isActive;
-      console.log(this.sex);
       this.getHotTags();
     },
     getHotTags() {
@@ -56,7 +55,7 @@ export default {
           );
         } else {
           getHot().then((res) => {
-            this.bookTags = res.data.male; //保存女频书籍分类
+            this.bookTags = res.data.male       
             window.localStorage.setItem(  // 将请求数据 保存到本地  方便 获取
               "bookTags_male",
               JSON.stringify(this.bookTags)
@@ -71,6 +70,7 @@ export default {
           );
         } else {
           getHot().then((res) => {
+            console.log(res);
             this.bookTags = res.data.female; //保存女频书籍分类
             window.localStorage.setItem(
               "bookTags_famle",
@@ -79,6 +79,7 @@ export default {
           });
         }
       }
+      console.log(this.bookTags);
     },
   },
 };

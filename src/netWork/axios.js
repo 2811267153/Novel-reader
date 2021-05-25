@@ -10,3 +10,9 @@ export function getHot() {
 export function getCategoriesY(sex, type, major, minor, start, limit) {
     return axios.get(`/category-info?gender=${sex}&type=${type}&major=${major}&minor=${minor}&start=${start}&limit=${limit}`)
 }
+export function getSubCategories() {
+    return axios.get('/sub-categories')
+}
+export function getBookId(id) {
+    return axios.get(`/book-info?id=${id}`)
+}
