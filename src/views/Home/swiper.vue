@@ -136,4 +136,7 @@ img {
   color: #ccc;
   font-size: 14px;
 }
+.word{
+  color: #ccc;
+}
 </style>

@@ -60,12 +60,7 @@ export default {
     },
     getBookId(index){
       this.bookId = this.bookItem[index]._id
-      this.$router.push({
-        path: '/bookInfo',
-        query: {
-          id: this.bookId
-        }
-      })
+      this.$router.push('/bookInfo/' + this.bookId)
     },
     lodingMore(){
       this.getCategoriesY()

@@ -7,6 +7,8 @@ const User = () => import("../views/User/User.vue");
 const Detail = () => import("../views/detail/detail.vue");
 const bookInfo = () => import("../views/detail/bookInfo.vue");
 
+const originalPush = VueRouter.prototype.push
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -15,7 +17,7 @@ const routes = [
   { path: "/bookCase", component: BookCase },
   { path: "/user", component: User },
   { path: "/detail", component: Detail },
-  { path: "/bookInfo", component: bookInfo },
+  { path: "/bookInfo/:id", component: bookInfo },
 ];
 
 const router = new VueRouter({
