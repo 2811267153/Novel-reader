@@ -77,7 +77,6 @@ export default {
         )
         .then((res) => {
           this.bookItem.push(...res.data.books);
-          console.log(this.bookItem);
         });
         this.start = Number(this.start ) + 1
         this.$refs.scroll.finishPullUp()

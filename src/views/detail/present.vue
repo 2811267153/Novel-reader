@@ -33,7 +33,6 @@ export default {
     //do something after creating vue instance
     this.id = this.$route.params.id
     this.getChapterList()
-    console.log(this.id);
   },
   methods: {
     isShowa() {

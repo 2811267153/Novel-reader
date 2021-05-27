@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     itemClick(index) {
-      console.log(this.sex);
       this.major = this.booktags[index].name;
       this.$router.push({
         path: "/detail",

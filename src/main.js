@@ -10,6 +10,7 @@ Vue.use(Vant)
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
+Vue.prototype.$bus = new Vue()
 axios.defaults.baseURL = 'http://novel.kele8.cn'
 
 Vue.filter('setLatelyFollower', LatelyFollower => {

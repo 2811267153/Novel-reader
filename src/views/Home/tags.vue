@@ -70,7 +70,6 @@ export default {
           );
         } else {
           getHot().then((res) => {
-            console.log(res);
             this.bookTags = res.data.female; //保存女频书籍分类
             window.localStorage.setItem(
               "bookTags_famle",

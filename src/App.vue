@@ -11,6 +11,10 @@
 import mainTabBar from './TabBat/MainTabBar'
 export default {
   name: 'app',
+  data() {
+    return {
+    }
+  },
   components: {
     mainTabBar
   }

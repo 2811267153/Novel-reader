@@ -51,11 +51,26 @@ export default {
     return {
       bookId: "",
       book: "",
+      timer: "",
     };
   },
   created() {
+    // this.timer = setInterval(() => {
     this.bookId = this.$route.params.id;
+    //   console.log(this.$route.params.id);
+    // }, 100);
     this.getBook();
+  },
+  mounted() {
+    this.$bus.$on("isCalled", () => {
+      //由于 无法在函数外获得书籍信息 所以之间将函数内的数据 发送到外面去
+      this.$store.commit("addBookList", this.book);
+      console.log("aa");
+    });
+    this.$bus.$on("getRecBook", () => {
+      this.bookId = this.$route.params.id;
+      this.getBook();
+    });
   },
   components: {
     scroll,
@@ -71,15 +86,19 @@ export default {
     getBook() {
       api.getBookId(this.bookId).then((res) => {
         this.book = res.data;
+        console.log(this.book);
       });
     },
   },
   watch: {
-    bookId() {
-      api.getBookId(this.bookId).then((res) => {
+    bookId(old) {
+      api.getBookId(old).then((res) => {
         this.book = res.data;
       });
     },
+  },
+  destroyed() {
+    clearInterval(this.timer);
   },
 };
 </script>

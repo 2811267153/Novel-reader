@@ -20,7 +20,7 @@ export default {
   name: "recmmend",
   data() {
     return {
-      id: "",
+      id: "", 
       books: "",
       bookId: ''
     };
@@ -35,13 +35,12 @@ export default {
         this.$emit('imgLoding')  //监听 图片是否加载完成， 刷新页面布局
     },
     getRecommdndBook(index){
-        console.log(this.books[index]);
         this.bookId = this.books[index]._id
          this.$router.push('/bookInfo/' + this.bookId)
+        this.$bus.$emit('getRecBook')
     },
     getRecommend() {
       api.getRecommend(this.id).then((res) => {
-        console.log(res);
         this.books = res.data.books.slice(0, 8);
       });
     },
@@ -69,7 +68,7 @@ export default {
 .info-item img {
   border-radius: 5px;
   width: 100%;
-  height: 80%;
+  height: 62%;
   padding-bottom: 3%;
 }
 </style>
